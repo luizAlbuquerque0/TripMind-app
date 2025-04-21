@@ -1,13 +1,25 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
+import {useNavigation} from '../../hooks/useNavigation';
+import {storeData} from '../../utils/asyncStorage';
+import {storageKeys} from '../../constants/storageKeys';
 
 const {width, height} = Dimensions.get('window');
 
 export function OnboardingScreen() {
+  const navigation = useNavigation();
+
+  async function handleDone() {
+    await storeData('1', storageKeys.ONBOARDING);
+    navigation.navigate('Home');
+  }
+
   return (
     <View style={styles.container}>
       <Onboarding
+        onDone={handleDone}
+        onSkip={handleDone}
         pages={[
           {
             backgroundColor: '#22D3EE',
