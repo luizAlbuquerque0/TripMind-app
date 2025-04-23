@@ -15,11 +15,7 @@ import {
 } from './style';
 import {useCallback} from 'react';
 import {Alert, View} from 'react-native';
-import {getData, storeData} from '../../../utils/asyncStorage';
-import {storageKeys} from '../../../constants/storageKeys';
-import {useNavigation} from '@react-navigation/native';
-import {usePublicNavigation} from '../../../hooks/useNavigation';
-import {useOnboardingStatus} from '../../../hooks/useOnboardingStatus';
+import {usePublicNavigation} from '../../hooks/useNavigation';
 
 export function HomeGuest() {
   const navigation = usePublicNavigation();
@@ -46,7 +42,7 @@ export function HomeGuest() {
             </StartButton>
           </View>
           <LottieView
-            source={require('../../../assets/animations/homeGuest.json')}
+            source={require('../../assets/animations/homeGuest.json')}
             style={{height: '50%', width: '50%'}}
             autoPlay
             loop
@@ -56,7 +52,7 @@ export function HomeGuest() {
         <ActionsWrapper>
           <ActionCard onPress={handleSignIn}>
             <LottieView
-              source={require('../../../assets/animations/login.json')}
+              source={require('../../assets/animations/login.json')}
               style={{height: '90%', width: '100%'}}
               autoPlay
               loop
@@ -65,7 +61,7 @@ export function HomeGuest() {
           </ActionCard>
           <ActionCard>
             <LottieView
-              source={require('../../../assets/animations/register.json')}
+              source={require('../../assets/animations/register.json')}
               style={{height: '90%', width: '100%'}}
               autoPlay
               loop
@@ -77,7 +73,7 @@ export function HomeGuest() {
         <ActionsWrapper>
           <ActionCard>
             <LottieView
-              source={require('../../../assets/animations/ai.json')}
+              source={require('../../assets/animations/ai.json')}
               style={{height: '90%', width: '100%'}}
               autoPlay
               loop
@@ -86,7 +82,7 @@ export function HomeGuest() {
           </ActionCard>
           <ActionCard>
             <LottieView
-              source={require('../../../assets/animations/popular.json')}
+              source={require('../../assets/animations/popular.json')}
               style={{height: '90%', width: '100%'}}
               autoPlay
               loop

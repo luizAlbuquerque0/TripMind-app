@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import {theme} from '../../../themes';
+import {theme} from '../../themes';
 
 export const Wrapper = styled.SafeAreaView(({theme}) => ({
   flex: 1,
