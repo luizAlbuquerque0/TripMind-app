@@ -2,10 +2,10 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SignInScreen} from '../screens/Auth/SignIn';
 import {SignUpScreen} from '../screens/Auth/SignUp';
 import {OnboardingScreen} from '../screens/Onboarding';
-import {HomeGuest} from '../screens/Home/HomeGuest';
 import {PublicStackParamList} from './navigationTypes';
 import {useOnboardingStatus} from '../hooks/useOnboardingStatus';
 import {useEffect} from 'react';
+import {HomeGuest} from '../screens/HomeGuest';
 
 const Stack = createNativeStackNavigator<PublicStackParamList>();
 

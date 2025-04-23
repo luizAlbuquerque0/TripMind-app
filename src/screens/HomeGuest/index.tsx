@@ -30,7 +30,7 @@ export function HomeGuest() {
       <InnerContent>
         <TopbarWrapper>
           <Logo
-            source={require('../../../assets/logo/logo.png')}
+            source={require('../../assets/logo/logo.png')}
             resizeMode="contain"
           />
         </TopbarWrapper>
