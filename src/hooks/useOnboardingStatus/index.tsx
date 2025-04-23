@@ -8,7 +8,7 @@ export function useOnboardingStatus() {
   useEffect(() => {
     (async () => {
       const storedValue = await getData(storageKeys.ONBOARDING);
-      setStatus(storedValue === '1');
+      setStatus(storedValue === 'seen');
     })();
   }, []);
 

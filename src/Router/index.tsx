@@ -18,6 +18,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export function Router() {
   const hasCompletedOnboarding = useOnboardingStatus();
 
+  console.warn(hasCompletedOnboarding);
+
   if (hasCompletedOnboarding === null) {
     return null;
   }

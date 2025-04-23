@@ -17,16 +17,16 @@ export const Wrapper = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 24;
+  font-size: 24px;
   color: #fff;
   font-weight: bold;
 `;
 
 export const SubTitle = styled.Text`
-  font-size: 16;
+  font-size: 16px;
   flex-wrap: wrap;
   text-align: center;
-  margin-top: 14;
+  margin-top: 14px;
   color: #fff;
   width: 90%;
 `;
