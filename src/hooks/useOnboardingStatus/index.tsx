@@ -6,10 +6,12 @@ export function useOnboardingStatus() {
   const [status, setStatus] = useState<boolean | null>(null);
 
   useEffect(() => {
-    (async () => {
+    const checkOnboardingStatus = async () => {
       const storedValue = await getData(storageKeys.ONBOARDING);
       setStatus(storedValue === 'seen');
-    })();
+    };
+
+    checkOnboardingStatus();
   }, []);
 
   return status;

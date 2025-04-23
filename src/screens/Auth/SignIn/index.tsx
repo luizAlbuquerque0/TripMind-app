@@ -20,7 +20,8 @@ import {Loader2} from 'lucide-react-native';
 import {SpinningLoader} from '../../../components/SpinningLoader';
 
 export function SignInScreen() {
-  const {control, errors, handleSubmit, isLoading} = useSignInController();
+  const {control, errors, handleSubmit, isLoading, LoginWithGoogle} =
+    useSignInController();
 
   return (
     <Wrapper>
@@ -83,7 +84,7 @@ export function SignInScreen() {
 
         <SeparatorText>ou</SeparatorText>
 
-        <GoogleButton onPress={handleSubmit} disabled={isLoading}>
+        <GoogleButton onPress={LoginWithGoogle} disabled={isLoading}>
           <ButtonText>Entrar com Google</ButtonText>
         </GoogleButton>
       </FormContainer>

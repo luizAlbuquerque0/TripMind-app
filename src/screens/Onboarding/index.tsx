@@ -17,7 +17,7 @@ export function OnboardingScreen() {
   const navigation = useNavigation();
 
   async function handleDone() {
-    await storeData('seen', storageKeys.ONBOARDING);
+    await storeData(storageKeys.ONBOARDING, 'seen');
     navigation.navigate('Home');
   }
 
