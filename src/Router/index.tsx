@@ -7,11 +7,8 @@ import {HomeScreen} from '../screens/Home';
 import {getData} from '../utils/asyncStorage';
 import {storageKeys} from '../constants/storageKeys';
 import {useOnboardingStatus} from '../hooks/useOnboardingStatus';
-
-type RootStackParamList = {
-  Onboarding: undefined;
-  Home: undefined;
-};
+import {SignUpScreen} from '../screens/Auth/SignUp';
+import {RootStackParamList} from './navigationTypes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -31,6 +28,7 @@ export function Router() {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

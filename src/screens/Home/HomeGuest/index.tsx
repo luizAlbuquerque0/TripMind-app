@@ -17,10 +17,12 @@ import {useCallback} from 'react';
 import {Alert, View} from 'react-native';
 import {getData, storeData} from '../../../utils/asyncStorage';
 import {storageKeys} from '../../../constants/storageKeys';
+import {useNavigation} from '../../../hooks/useNavigation';
 
 export function HomeGuest() {
+  const navigation = useNavigation();
   const handleLogin = useCallback(() => {
-    Alert.alert('Login', 'Ir para tela de login');
+    navigation.navigate('SignUp');
   }, []);
   return (
     <Wrapper>
