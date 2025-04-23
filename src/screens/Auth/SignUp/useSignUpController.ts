@@ -1,6 +1,8 @@
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
+import {AuthService} from '../../../services/Auth.service';
+import Toast from 'react-native-toast-message';
 
 const signUpSchema = z
   .object({
@@ -36,9 +38,19 @@ export function useSignUpController() {
 
   const handleSubmit = hookFormHandleSubmit(async data => {
     try {
-      console.log(data);
-    } catch {
-      console.error('Erro ao logar');
+      const response = await AuthService.signUp({
+        name: data.name,
+        password: data.password,
+        email: data.email,
+      });
+
+      Toast.show({
+        type: 'success',
+        text1: 'Conta criada!',
+        text2: 'Seja bem-vindo ao TripMind 🚀',
+      });
+    } catch (error) {
+      console.error(error);
     }
   });
 
