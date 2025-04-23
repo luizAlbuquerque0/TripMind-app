@@ -1,13 +1,11 @@
-import {removeData} from '../../utils/asyncStorage';
-import {storageKeys} from '../../constants/storageKeys';
-import {useNavigation} from '../../hooks/useNavigation';
-import {HomeGuest} from './HomeGuest';
+import {Text, View} from 'react-native';
+import {useAuth} from '../../hooks/useAuth';
 
 export function HomeScreen() {
-  const navigation = useNavigation();
-  async function showOnboarding() {
-    await removeData(storageKeys.ONBOARDING);
-    navigation.navigate('Onboarding');
-  }
-  return <HomeGuest />;
+  const {signOut} = useAuth();
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text onPress={signOut}>SignOut</Text>
+    </View>
+  );
 }

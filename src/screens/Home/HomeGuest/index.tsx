@@ -17,10 +17,12 @@ import {useCallback} from 'react';
 import {Alert, View} from 'react-native';
 import {getData, storeData} from '../../../utils/asyncStorage';
 import {storageKeys} from '../../../constants/storageKeys';
-import {useNavigation} from '../../../hooks/useNavigation';
+import {useNavigation} from '@react-navigation/native';
+import {usePublicNavigation} from '../../../hooks/useNavigation';
+import {useOnboardingStatus} from '../../../hooks/useOnboardingStatus';
 
 export function HomeGuest() {
-  const navigation = useNavigation();
+  const navigation = usePublicNavigation();
   const handleSignUp = useCallback(() => {
     navigation.navigate('SignUp');
   }, []);

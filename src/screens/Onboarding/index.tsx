@@ -7,14 +7,14 @@ import {
 } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
-import {useNavigation} from '../../hooks/useNavigation';
 import {storeData} from '../../utils/asyncStorage';
 import {storageKeys} from '../../constants/storageKeys';
 import {AnimationContainer, SubTitle, Title, Wrapper} from './style';
 import {DoneButton} from './components/DoneButton';
+import {usePublicNavigation} from '../../hooks/useNavigation';
 
 export function OnboardingScreen() {
-  const navigation = useNavigation();
+  const navigation = usePublicNavigation();
 
   async function handleDone() {
     await storeData(storageKeys.ONBOARDING, 'seen');

@@ -1,9 +1,17 @@
-import {useNavigation as useNavigationNative} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../Router/navigationTypes';
+import {
+  PrivateStackParamList,
+  PublicStackParamList,
+} from '../../Router/navigationTypes';
 
-type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+type PublicNavigationProp = NativeStackNavigationProp<PublicStackParamList>;
+type PrivateNavigationProp = NativeStackNavigationProp<PrivateStackParamList>;
 
-export function useNavigation() {
-  return useNavigationNative<AppNavigationProp>();
+export function usePublicNavigation() {
+  return useNavigation<PublicNavigationProp>();
+}
+
+export function usePrivateNavigation() {
+  return useNavigation<PrivateNavigationProp>();
 }
