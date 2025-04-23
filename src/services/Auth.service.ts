@@ -26,4 +26,13 @@ export class AuthService {
 
     return data;
   }
+
+  static async signIn({password, email}: ISignInDTO) {
+    const {data} = await httpClient.post<ISignInResponse>('/sign-in', {
+      password,
+      email,
+    });
+
+    return data;
+  }
 }

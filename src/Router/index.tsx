@@ -9,6 +9,7 @@ import {storageKeys} from '../constants/storageKeys';
 import {useOnboardingStatus} from '../hooks/useOnboardingStatus';
 import {SignUpScreen} from '../screens/Auth/SignUp';
 import {RootStackParamList} from './navigationTypes';
+import {SignInScreen} from '../screens/Auth/SignIn';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,6 +30,7 @@ export function Router() {
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="SignIn" component={SignInScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

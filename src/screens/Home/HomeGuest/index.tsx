@@ -21,8 +21,11 @@ import {useNavigation} from '../../../hooks/useNavigation';
 
 export function HomeGuest() {
   const navigation = useNavigation();
-  const handleLogin = useCallback(() => {
+  const handleSignUp = useCallback(() => {
     navigation.navigate('SignUp');
+  }, []);
+  const handleSignIn = useCallback(() => {
+    navigation.navigate('SignIn');
   }, []);
   return (
     <Wrapper>
@@ -36,7 +39,7 @@ export function HomeGuest() {
         <Card>
           <View style={{width: '50%'}}>
             <Title>Planeje sua próxima viagem com inteligência</Title>
-            <StartButton onPress={handleLogin}>
+            <StartButton onPress={handleSignUp}>
               <ButtonText>Começar →</ButtonText>
             </StartButton>
           </View>
@@ -49,7 +52,7 @@ export function HomeGuest() {
         </Card>
         <Label>Para não perder nada</Label>
         <ActionsWrapper>
-          <ActionCard>
+          <ActionCard onPress={handleSignIn}>
             <LottieView
               source={require('../../../assets/animations/login.json')}
               style={{height: '90%', width: '100%'}}
