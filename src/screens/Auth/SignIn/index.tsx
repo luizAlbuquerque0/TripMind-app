@@ -18,6 +18,7 @@ import {Text, View} from 'react-native';
 import {useSignInController} from './useSignInController';
 import {Loader2} from 'lucide-react-native';
 import {SpinningLoader} from '../../../components/SpinningLoader';
+import {FloatingLabelInput} from '../../../components/FloatingLabelInput';
 
 export function SignInScreen() {
   const {control, errors, handleSubmit, isLoading, LoginWithGoogle} =
@@ -35,17 +36,16 @@ export function SignInScreen() {
 
         <Title>Entrar</Title>
 
-        <Label error={!!errors.email}>E-mail</Label>
         <Controller
           control={control}
           name="email"
           rules={{required: 'E-mail obrigatório'}}
           render={({field: {onChange, value}}) => (
-            <Input
-              placeholder="seu@email.com"
+            <FloatingLabelInput
               keyboardType="email-address"
               onChangeText={onChange}
               value={value}
+              label="seu@email.com"
             />
           )}
         />

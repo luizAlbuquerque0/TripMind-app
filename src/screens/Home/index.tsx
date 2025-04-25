@@ -16,6 +16,16 @@ import {
 import {useCallback} from 'react';
 import {Alert, Text, View} from 'react-native';
 import {usePublicNavigation} from '../../hooks/useNavigation';
+import {useAuth} from '../../hooks/useAuth';
+import {storageKeys} from '../../constants/storageKeys';
+import {removeData} from '../../utils/asyncStorage';
+
+const {signOut} = useAuth();
+
+async function reset() {
+  await removeData(storageKeys.ONBOARDING);
+  signOut();
+}
 
 export function HomeScreen() {
   return (
@@ -60,7 +70,7 @@ export function HomeScreen() {
               autoPlay
               loop
             />
-            <ActionTitle>Viagem para Amsterdam</ActionTitle>
+            <ActionTitle onPress={reset}>Viagem para Amsterdam</ActionTitle>
           </ActionCard>
           <ActionCard>
             <LottieView

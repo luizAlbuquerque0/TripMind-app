@@ -16,6 +16,8 @@ import {
 import {useCallback} from 'react';
 import {Alert, View} from 'react-native';
 import {usePublicNavigation} from '../../hooks/useNavigation';
+import {removeData} from '../../utils/asyncStorage';
+import {storageKeys} from '../../constants/storageKeys';
 
 export function HomeGuest() {
   const navigation = usePublicNavigation();
@@ -25,6 +27,10 @@ export function HomeGuest() {
   const handleSignIn = useCallback(() => {
     navigation.navigate('SignIn');
   }, []);
+
+  async function reset() {
+    await removeData(storageKeys.ONBOARDING);
+  }
   return (
     <Wrapper>
       <InnerContent>
@@ -78,7 +84,7 @@ export function HomeGuest() {
               autoPlay
               loop
             />
-            <ActionTitle>Deixar com a IA</ActionTitle>
+            <ActionTitle onPress={() => reset()}>Deixar com a IA</ActionTitle>
           </ActionCard>
           <ActionCard>
             <LottieView
