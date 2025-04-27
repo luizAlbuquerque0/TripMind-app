@@ -1,14 +1,11 @@
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
-import {AuthService} from '../../../services/Auth.service';
 import Toast from 'react-native-toast-message';
 import {useMutation} from '@tanstack/react-query';
 import {useAuth} from '../../../hooks/useAuth';
-import {getData} from '../../../utils/asyncStorage';
-import {storageKeys} from '../../../constants/storageKeys';
-import {Alert} from 'react-native';
-import {useOnboardingStatus} from '../../../hooks/useOnboardingStatus';
+import {useShallow} from 'zustand/shallow';
+import {useStore} from '../../../store';
 
 const signInSchema = z.object({
   email: z.string().nonempty('E-mail é obrigatório').email('Email inválido'),
@@ -21,7 +18,12 @@ const signInSchema = z.object({
 export type FormData = z.infer<typeof signInSchema>;
 
 export function useSignInController() {
-  const hasCompletedOnboarding = useOnboardingStatus();
+  const {isSignInModalOpen, toogleSignInModalOpen} = useStore(
+    useShallow(state => ({
+      isSignInModalOpen: state.modals.isSignInModalOpen,
+      toogleSignInModalOpen: state.modals.toogleSignInModalOpen,
+    })),
+  );
   const authContext = useAuth();
   const {
     control,
@@ -57,9 +59,11 @@ export function useSignInController() {
 
   return {
     control,
-    handleSubmit,
     errors,
     isLoading: isPending,
+    isSignInModalOpen,
+    toogleSignInModalOpen,
+    handleSubmit,
     LoginWithGoogle,
   };
 }

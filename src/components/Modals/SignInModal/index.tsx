@@ -16,21 +16,22 @@ import {
 } from './style';
 import {SpinningLoader} from '../../../components/SpinningLoader';
 
-export function SignInModal({
-  open = false,
-  closeModal,
-}: {
-  open: boolean;
-  closeModal: (open: boolean) => void;
-}) {
-  const {control, errors, handleSubmit, isLoading, LoginWithGoogle} =
-    useSignInController();
+export function SignInModal() {
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isLoading,
+    LoginWithGoogle,
+    isSignInModalOpen,
+    toogleSignInModalOpen,
+  } = useSignInController();
   return (
     <Modal
-      visible={open}
+      visible={isSignInModalOpen}
       animationType="slide"
       presentationStyle="pageSheet"
-      onRequestClose={() => closeModal(false)}>
+      onRequestClose={() => toogleSignInModalOpen()}>
       <Container>
         <View style={{alignItems: 'center'}}>
           <Logo
