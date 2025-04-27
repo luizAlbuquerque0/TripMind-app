@@ -3,7 +3,7 @@ import {theme} from '../../themes';
 import {StyleSheet} from 'react-native';
 
 export const Input = styled.TextInput`
-  background-color: ${theme.colors.primary.light};
+  background-color: ${theme.colors.neutral.n100};
   width: 100%;
   height: 48px;
   margin-top: 4px;

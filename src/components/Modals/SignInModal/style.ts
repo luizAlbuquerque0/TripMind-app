@@ -2,12 +2,10 @@ import styled from '@emotion/native';
 import {ImageBackground, SafeAreaView} from 'react-native';
 import {theme} from '../../../themes';
 
-export const Wrapper = styled(SafeAreaView)`
+export const Container = styled.ScrollView`
   flex: 1;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  background-color: ${theme.colors.primary.main};
+  padding: 10px 10px;
+  background-color: ${theme.colors.primary.light};
 `;
 
 export const Logo = styled.Image`
@@ -18,16 +16,12 @@ export const Logo = styled.Image`
   margin-top: -40px;
 `;
 
-export const FormContainer = styled.ScrollView`
-  height: 500px;
-  width: 95%;
-  border-radius: 8px;
-  padding: 8px;
-  margin-bottom: 40px;
+export const FormContainer = styled.View`
+  gap: 16px;
 `;
 
 export const Title = styled.Text`
-  color: ${theme.colors.primary.light};
+  color: ${theme.colors.neutral.n0};
   font-weight: bold;
   font-size: 32px;
   text-align: center;
@@ -64,13 +58,14 @@ export const Button = styled.TouchableOpacity(({theme}) => ({
 
 export const GoogleButton = styled(Button)(({theme}) => ({
   marginTop: 0,
-  backgroundColor: theme.colors.primary.light,
+  backgroundColor: theme.colors.secondary.main,
 }));
 
 export const SeparatorText = styled(Label)(({theme}) => ({
   marginTop: 5,
   marginBottom: 5,
   textAlign: 'center',
+  color: theme.colors.neutral.n0,
 }));
 
 export const ButtonText = styled.Text(({theme}) => ({

@@ -1,5 +1,4 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SignInScreen} from '../screens/Auth/SignIn';
 import {SignUpScreen} from '../screens/Auth/SignUp';
 import {OnboardingScreen} from '../screens/Onboarding';
 import {PublicStackParamList} from './navigationTypes';
@@ -19,7 +18,6 @@ export function PublicStack() {
       initialRouteName={status ? 'Home' : 'Onboarding'}
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-      <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Home" component={HomeGuest} />
     </Stack.Navigator>

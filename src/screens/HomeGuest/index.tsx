@@ -13,13 +13,15 @@ import {
   ActionCard,
   ActionTitle,
 } from './style';
-import {useCallback} from 'react';
+import {useCallback, useState} from 'react';
 import {Alert, View} from 'react-native';
 import {usePublicNavigation} from '../../hooks/useNavigation';
 import {removeData} from '../../utils/asyncStorage';
 import {storageKeys} from '../../constants/storageKeys';
+import {SignInModal} from '../../components/Modals/SignInModal';
 
 export function HomeGuest() {
+  const [login, setLogin] = useState(false);
   const navigation = usePublicNavigation();
   const handleSignUp = useCallback(() => {
     navigation.navigate('SignUp');
@@ -56,7 +58,7 @@ export function HomeGuest() {
         </Card>
         <Label>Para não perder nada</Label>
         <ActionsWrapper>
-          <ActionCard onPress={handleSignIn}>
+          <ActionCard onPress={() => setLogin(true)}>
             <LottieView
               source={require('../../assets/animations/login.json')}
               style={{height: '90%', width: '100%'}}
@@ -97,6 +99,7 @@ export function HomeGuest() {
           </ActionCard>
         </ActionsWrapper>
       </InnerContent>
+      <SignInModal open={login} closeModal={setLogin} />
     </Wrapper>
   );
 }
