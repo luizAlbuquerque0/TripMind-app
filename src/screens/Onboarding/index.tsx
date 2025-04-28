@@ -1,24 +1,17 @@
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacityProps,
-  View,
-} from 'react-native';
+import {TouchableOpacityProps} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
 import {storeData} from '../../utils/asyncStorage';
 import {storageKeys} from '../../constants/storageKeys';
 import {AnimationContainer, SubTitle, Title, Wrapper} from './style';
 import {DoneButton} from './components/DoneButton';
-import {usePublicNavigation} from '../../hooks/useNavigation';
+import {useNavigation} from '@react-navigation/native';
 
 export function OnboardingScreen() {
-  const navigation = usePublicNavigation();
-
+  const navigation = useNavigation();
   async function handleDone() {
     await storeData(storageKeys.ONBOARDING, 'seen');
-    navigation.navigate('Home');
+    navigation.navigate('HomeGuest');
   }
 
   return (

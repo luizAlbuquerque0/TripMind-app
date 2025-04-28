@@ -1,10 +1,6 @@
-export type PublicStackParamList = {
+export type RootStackParamList = {
   Onboarding: undefined;
-  Home: undefined;
-  SignUp: undefined;
-  SignIn: undefined;
-};
-
-export type PrivateStackParamList = {
+  SplashScreen: undefined;
+  HomeGuest: undefined;
   Home: undefined;
 };

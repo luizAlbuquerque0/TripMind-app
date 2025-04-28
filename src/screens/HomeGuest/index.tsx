@@ -14,22 +14,14 @@ import {
   ActionTitle,
 } from './style';
 import {useCallback, useState} from 'react';
-import {Alert, View} from 'react-native';
-import {usePublicNavigation} from '../../hooks/useNavigation';
 import {removeData} from '../../utils/asyncStorage';
 import {storageKeys} from '../../constants/storageKeys';
 import {SignInModal} from '../../components/Modals/SignInModal';
 import {useStore} from '../../store';
 import {useShallow} from 'zustand/shallow';
+import {View} from 'react-native';
 
 export function HomeGuest() {
-  const navigation = usePublicNavigation();
-  const handleSignUp = useCallback(() => {
-    navigation.navigate('SignUp');
-  }, []);
-  const handleSignIn = useCallback(() => {
-    navigation.navigate('SignIn');
-  }, []);
   const {toogleSignInModalOpen} = useStore(
     useShallow(state => ({
       toogleSignInModalOpen: state.modals.toogleSignInModalOpen,
@@ -51,7 +43,7 @@ export function HomeGuest() {
         <Card>
           <View style={{width: '50%'}}>
             <Title>Planeje sua próxima viagem com inteligência</Title>
-            <StartButton onPress={handleSignUp}>
+            <StartButton>
               <ButtonText>Começar →</ButtonText>
             </StartButton>
           </View>

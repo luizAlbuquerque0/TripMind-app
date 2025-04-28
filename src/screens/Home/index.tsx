@@ -15,7 +15,6 @@ import {
 } from './style';
 import {useCallback} from 'react';
 import {Alert, Text, View} from 'react-native';
-import {usePublicNavigation} from '../../hooks/useNavigation';
 import {useAuth} from '../../hooks/useAuth';
 import {storageKeys} from '../../constants/storageKeys';
 import {removeData} from '../../utils/asyncStorage';
