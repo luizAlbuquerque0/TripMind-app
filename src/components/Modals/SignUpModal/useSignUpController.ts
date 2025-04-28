@@ -3,6 +3,9 @@ import {useForm} from 'react-hook-form';
 import {z} from 'zod';
 import {AuthService} from '../../../services/Auth.service';
 import Toast from 'react-native-toast-message';
+import {useMutation} from '@tanstack/react-query';
+import {useStore} from '../../../store';
+import {useShallow} from 'zustand/shallow';
 
 const signUpSchema = z
   .object({
@@ -10,7 +13,7 @@ const signUpSchema = z
     email: z.string().nonempty('E-mail é obrigatório').email('Email inválido'),
     password: z
       .string()
-      .nonempty('E-mail é obrigatório')
+      .nonempty('Senha é obrigatório')
       .min(6, 'Mínimo 6 caracteres'),
     confirmPassword: z.string().nonempty('Confirme sua senha'),
   })
@@ -22,10 +25,19 @@ const signUpSchema = z
 export type FormData = z.infer<typeof signUpSchema>;
 
 export function useSignUpController() {
+  const {toogleSignInModalOpen, toogleSignUpModalOpen} = useStore(
+    useShallow(state => ({
+      isSignInModalOpen: state.modals.isSignInModalOpen,
+      isSignUpModalOpen: state.modals.isSignUpModalOpen,
+      toogleSignInModalOpen: state.modals.toogleSignInModalOpen,
+      toogleSignUpModalOpen: state.modals.toogleSignUpModalOpen,
+    })),
+  );
   const {
     control,
     handleSubmit: hookFormHandleSubmit,
     formState: {errors},
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -36,9 +48,13 @@ export function useSignUpController() {
     },
   });
 
+  const {mutateAsync, isPending} = useMutation({
+    mutationFn: AuthService.signUp,
+  });
+
   const handleSubmit = hookFormHandleSubmit(async data => {
     try {
-      const response = await AuthService.signUp({
+      await mutateAsync({
         name: data.name,
         password: data.password,
         email: data.email,
@@ -49,14 +65,22 @@ export function useSignUpController() {
         text1: 'Conta criada!',
         text2: 'Seja bem-vindo ao TripMind 🚀',
       });
+
+      toogleSignUpModalOpen();
     } catch (error) {
-      console.error(error);
+      Toast.show({
+        type: 'error',
+        text1: 'Erro ao criar sua conta!',
+        text2: 'Tente novamente mais tarde',
+      });
     }
   });
 
   return {
     control,
     handleSubmit,
+    reset,
     errors,
+    isLoading: isPending,
   };
 }

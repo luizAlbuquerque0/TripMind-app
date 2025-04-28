@@ -16,7 +16,7 @@ export function App() {
           <ThemeProvider theme={theme}>
             <Router />
             <RootModals />
-            <Toast position="bottom" />
+            <Toast position="top" />
           </ThemeProvider>
         </SafeAreaProvider>
       </AuthProvider>

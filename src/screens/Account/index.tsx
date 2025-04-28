@@ -22,7 +22,7 @@ const actions = [
 ];
 
 export function AccountScreen() {
-  const {openSignInModal} = useAccountController();
+  const {openSignInModal, openSignUpModal} = useAccountController();
 
   return (
     <SafeArea>
@@ -37,6 +37,7 @@ export function AccountScreen() {
         <SignUpContainer>
           <SignUpText>Não tem uma conta?</SignUpText>
           <Pressable
+            onPress={openSignUpModal}
             style={({pressed}) => ({
               opacity: pressed ? 0.5 : 1,
             })}>
