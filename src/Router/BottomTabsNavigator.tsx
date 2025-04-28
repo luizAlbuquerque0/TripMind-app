@@ -7,6 +7,7 @@ import {TabBarTravel} from '../components/TabBarIcons/TabBarTravel';
 import {TabBarAccount} from '../components/TabBarIcons/TabBarAccount';
 import {TabBarFav} from '../components/TabBarIcons/TabBarFav';
 import {theme} from '../themes';
+import {AccountScreen} from '../screens/Account';
 
 export function BottomTabNavigator() {
   const {Navigator, Screen} = createBottomTabNavigator<BottomTabParamList>();
@@ -40,7 +41,7 @@ export function BottomTabNavigator() {
       />
       <Screen
         name="Account"
-        component={HomeGuest}
+        component={AccountScreen}
         options={{tabBarIcon: TabBarAccount}}
       />
     </Navigator>

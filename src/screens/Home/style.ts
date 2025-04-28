@@ -41,7 +41,7 @@ export const Card = styled.View`
 export const Title = styled.Text(({theme}) => ({
   fontSize: theme.fonts.size.extraLarge,
   color: theme.colors.neutral.n0,
-  fontFamily: theme.fonts.bold,
+  fontFamily: theme.fonts.regular,
   marginBottom: theme.spacing.s,
   textAlign: 'left',
   paddingLeft: 8,

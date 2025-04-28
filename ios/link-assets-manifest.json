@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Danfo-Regular.ttf",
+      "sha1": "6ffa2a89faec85f86951db7b53e86c2c49213807"
+    },
+    {
+      "path": "src/assets/fonts/Inter-Regular.ttf",
+      "sha1": "ee5c2e22ffeddefc433c9aa4c76779bb73a5c682"
+    },
+    {
+      "path": "src/assets/fonts/RobotoCondensed-Regular.ttf",
+      "sha1": "80bdac5a0924900e8bf48571bd5c385abdbc7953"
+    }
+  ]
+}
