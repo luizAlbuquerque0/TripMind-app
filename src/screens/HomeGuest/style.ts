@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
 import {theme} from '../../themes';
+import {AppText} from '../../components/AppText';
 
 export const Wrapper = styled.SafeAreaView(({theme}) => ({
   flex: 1,
@@ -36,10 +37,9 @@ export const Card = styled.View`
   margin-top: -30;
 `;
 
-export const Title = styled.Text(({theme}) => ({
+export const Title = styled(AppText)(({theme}) => ({
   fontSize: theme.fonts.size.extraLarge,
   color: theme.colors.neutral.n0,
-  fontFamily: theme.fonts.regular,
   marginBottom: theme.spacing.s,
   textAlign: 'left',
   paddingLeft: 8,

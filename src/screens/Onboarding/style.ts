@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
 import {Dimensions} from 'react-native';
+import {AppText} from '../../components/AppText';
 
 const {width, height} = Dimensions.get('window');
 
@@ -16,13 +17,13 @@ export const Wrapper = styled.View`
   flex: 1;
 `;
 
-export const Title = styled.Text`
+export const Title = styled(AppText)`
   font-size: 24px;
   color: #fff;
   font-weight: bold;
 `;
 
-export const SubTitle = styled.Text`
+export const SubTitle = styled(AppText)`
   font-size: 16px;
   flex-wrap: wrap;
   text-align: center;

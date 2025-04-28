@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
 import {scale} from 'react-native-size-matters';
+import {AppText} from '../AppText';
 
 export const Container = styled.View`
   flex: 1;
@@ -10,7 +11,7 @@ export const Container = styled.View`
   width: 200%;
 `;
 
-export const Label = styled.Text<{color: string}>`
+export const Label = styled(AppText)<{color: string}>`
   color: ${props => props.color};
   font-size: ${`${scale(9)}px`};
   margin-top: 4px;
