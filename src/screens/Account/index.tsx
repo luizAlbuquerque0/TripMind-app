@@ -14,6 +14,7 @@ import {
   UnderlineText,
 } from './style';
 import {Pressable} from 'react-native';
+import {useAccountController} from './useAccountController';
 
 const actions = [
   {title: 'Configurações', icon: Settings},
@@ -21,6 +22,8 @@ const actions = [
 ];
 
 export function AccountScreen() {
+  const {openSignInModal} = useAccountController();
+
   return (
     <SafeArea>
       <Container>
@@ -28,7 +31,7 @@ export function AccountScreen() {
         <SubTitle>
           Acesse sua conta e comece a planejar sua próxima viagem
         </SubTitle>
-        <SignInButton>
+        <SignInButton onPress={openSignInModal}>
           <SignInButtonText>Entrar</SignInButtonText>
         </SignInButton>
         <SignUpContainer>

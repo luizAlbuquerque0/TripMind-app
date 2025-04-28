@@ -7,77 +7,82 @@ import {
   ButtonText,
   ErrorMessage,
   GoogleButton,
-  Label,
   SeparatorText,
   Container,
   FormContainer,
-  Logo,
   Title,
+  Header,
+  CloseButton,
+  FieldContainer,
 } from './style';
 import {SpinningLoader} from '../../../components/SpinningLoader';
+import {XIcon} from 'lucide-react-native';
 
-export function SignInModal() {
-  const {
-    control,
-    errors,
-    handleSubmit,
-    isLoading,
-    LoginWithGoogle,
-    isSignInModalOpen,
-    toogleSignInModalOpen,
-  } = useSignInController();
+interface SignInModalProps {
+  open: boolean;
+  closeModal: () => void;
+}
+
+export function SignInModal({open, closeModal}: SignInModalProps) {
+  const {control, errors, handleSubmit, isLoading, LoginWithGoogle} =
+    useSignInController();
+
   return (
     <Modal
-      visible={isSignInModalOpen}
+      visible={open}
       animationType="slide"
       presentationStyle="pageSheet"
-      onRequestClose={() => toogleSignInModalOpen()}>
+      onRequestClose={() => closeModal()}>
       <Container>
-        <View style={{alignItems: 'center'}}>
-          <Logo
-            source={require('../../../assets/logo/logo.png')}
-            resizeMode="contain"
-          />
-        </View>
-        <Title>Entrar</Title>
+        <Header>
+          <Title>Entrar</Title>
+          <CloseButton onPress={closeModal}>
+            <XIcon />
+          </CloseButton>
+        </Header>
         <FormContainer>
-          <Controller
-            control={control}
-            name="email"
-            rules={{required: 'E-mail obrigatório'}}
-            render={({field: {onChange, value}}) => (
-              <FloatingLabelInput
-                keyboardType="email-address"
-                onChangeText={onChange}
-                value={value}
-                label="seu@email.com"
-              />
+          <FieldContainer>
+            <Controller
+              control={control}
+              name="email"
+              rules={{required: 'E-mail obrigatório'}}
+              render={({field: {onChange, value}}) => (
+                <FloatingLabelInput
+                  keyboardType="email-address"
+                  onChangeText={onChange}
+                  value={value}
+                  label="seu@email.com"
+                  autoCapitalize="none"
+                />
+              )}
+            />
+            {errors.email && (
+              <ErrorMessage style={{color: 'red'}}>
+                {errors.email.message}
+              </ErrorMessage>
             )}
-          />
-          {errors.email && (
-            <ErrorMessage style={{color: 'red'}}>
-              {errors.email.message}
-            </ErrorMessage>
-          )}
+          </FieldContainer>
 
-          <Controller
-            control={control}
-            name="password"
-            rules={{required: 'Senha obrigatória'}}
-            render={({field: {onChange, value}}) => (
-              <FloatingLabelInput
-                label="Sua senha"
-                secureTextEntry
-                onChangeText={onChange}
-                value={value}
-              />
+          <FieldContainer>
+            <Controller
+              control={control}
+              name="password"
+              rules={{required: 'Senha obrigatória'}}
+              render={({field: {onChange, value}}) => (
+                <FloatingLabelInput
+                  label="Sua senha"
+                  secureTextEntry
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+            />
+            {errors.password && (
+              <ErrorMessage style={{color: 'red'}}>
+                {errors.password.message}
+              </ErrorMessage>
             )}
-          />
-          {errors.password && (
-            <ErrorMessage style={{color: 'red'}}>
-              {errors.password.message}
-            </ErrorMessage>
-          )}
+          </FieldContainer>
         </FormContainer>
         <Button onPress={handleSubmit} disabled={isLoading}>
           <ButtonText>

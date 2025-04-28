@@ -18,12 +18,7 @@ const signInSchema = z.object({
 export type FormData = z.infer<typeof signInSchema>;
 
 export function useSignInController() {
-  const {isSignInModalOpen, toogleSignInModalOpen} = useStore(
-    useShallow(state => ({
-      isSignInModalOpen: state.modals.isSignInModalOpen,
-      toogleSignInModalOpen: state.modals.toogleSignInModalOpen,
-    })),
-  );
+  
   const authContext = useAuth();
   const {
     control,
@@ -61,8 +56,6 @@ export function useSignInController() {
     control,
     errors,
     isLoading: isPending,
-    isSignInModalOpen,
-    toogleSignInModalOpen,
     handleSubmit,
     LoginWithGoogle,
   };

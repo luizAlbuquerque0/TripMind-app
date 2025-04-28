@@ -97,7 +97,6 @@ export function HomeGuest() {
           </ActionCard>
         </ActionsWrapper>
       </InnerContent>
-      <SignInModal />
     </Wrapper>
   );
 }
