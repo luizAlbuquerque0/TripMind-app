@@ -1,82 +1,92 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacityProps} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
-
-const {width, height} = Dimensions.get('window');
+import {storeData} from '../../utils/asyncStorage';
+import {storageKeys} from '../../constants/storageKeys';
+import {AnimationContainer, SubTitle, Title, Wrapper} from './style';
+import {DoneButton} from './components/DoneButton';
+import {useNavigation} from '@react-navigation/native';
 
 export function OnboardingScreen() {
+  const navigation = useNavigation();
+  async function handleDone() {
+    await storeData(storageKeys.ONBOARDING, 'seen');
+    navigation.navigate('HomeGuest');
+  }
+
   return (
-    <View style={styles.container}>
+    <Wrapper>
       <Onboarding
+        onDone={handleDone}
+        onSkip={handleDone}
+        nextLabel="Próximo"
+        skipLabel={'Pular'}
+        DoneButtonComponent={(props: TouchableOpacityProps) => (
+          <DoneButton {...props} />
+        )}
         pages={[
           {
             backgroundColor: '#22D3EE',
             image: (
-              <View style={styles.animationContainer}>
+              <AnimationContainer>
                 <LottieView
                   source={require('../../assets/animations/onboarding1.json')}
-                  style={styles.animation}
+                  style={{height: '100%', width: '100%'}}
                   autoPlay
                   loop
                 />
-              </View>
+              </AnimationContainer>
             ),
-            title: 'Roteiros inteligentes com IA',
-            subtitle:
-              'Conte de onde pra onde vai, o estilo da sua viagem e deixe que a IA monte tudo pra você.',
+            title: <Title>Roteiros inteligentes com IA</Title>,
+            subtitle: (
+              <SubTitle>
+                Conte de onde pra onde vai, o estilo da sua viagem e deixe que a
+                IA monte tudo pra você.
+              </SubTitle>
+            ),
           },
           {
             backgroundColor: '#4F46E5',
             image: (
-              <View style={styles.animationContainer}>
+              <AnimationContainer>
                 <LottieView
                   source={require('../../assets/animations/onboarding2.json')}
-                  style={styles.animation}
+                  style={{height: '100%', width: '100%'}}
                   autoPlay
                   loop={false}
                 />
-              </View>
+              </AnimationContainer>
             ),
-            title: 'Organize tudo em um só app',
-            subtitle:
-              'Itinerários diários, orçamento, dicas locais e muito mais num só lugar.',
+            title: <Title>Organize tudo em um só app</Title>,
+            subtitle: (
+              <SubTitle>
+                Itinerários diários, orçamento, dicas locais e muito mais num só
+                lugar.
+              </SubTitle>
+            ),
           },
           {
             backgroundColor: '#F472B6',
             image: (
-              <View style={styles.animationContainer}>
+              <AnimationContainer>
                 <LottieView
                   source={require('../../assets/animations/onboarding3.json')}
-                  style={styles.animation}
+                  style={{height: '100%', width: '100%'}}
                   autoPlay
                   loop
                 />
-              </View>
+              </AnimationContainer>
             ),
-            title: 'Seu roteiro, do seu jeito',
-            subtitle:
-              'Edite, personalize e salve seu roteiro. Liberdade total pra planejar como quiser.',
+            title: <Title>Seu roteiro, do seu jeito</Title>,
+            subtitle: (
+              <SubTitle>
+                Edite, personalize e salve seu roteiro. Liberdade total pra
+                planejar como quiser.
+              </SubTitle>
+            ),
           },
         ]}
       />
-    </View>
+    </Wrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  animationContainer: {
-    width: width * 0.9,
-    height: height * 0.5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-    marginBottom: -60,
-  },
-  animation: {
-    width: '100%',
-    height: '100%',
-  },
-});
