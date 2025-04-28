@@ -7,7 +7,7 @@ export type RootStackParamList = {
 
 export type BottomTabParamList = {
   HomeGuest: undefined;
-  Favoritos: undefined;
+  Fav: undefined;
   Account: undefined;
-  Viagens: undefined;
+  Travels: undefined;
 };
