@@ -1,7 +1,10 @@
-import {RootStackParamList} from '../Router/navigationTypes';
+import {
+  RootStackParamList,
+  BottomTabParamList,
+} from '../Router/navigationTypes';
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
+    interface RootParamList extends RootStackParamList, BottomTabParamList {}
   }
 }

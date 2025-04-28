@@ -7,6 +7,7 @@ import {RootStackParamList} from './navigationTypes';
 import {HomeGuest} from '../screens/HomeGuest';
 import {OnboardingScreen} from '../screens/Onboarding';
 import {HomeScreen} from '../screens/Home';
+import {BottomTabNavigator} from './BottomTabsNavigator';
 
 export function Router() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -17,7 +18,7 @@ export function Router() {
         initialRouteName="SplashScreen"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
-        <Stack.Screen name="HomeGuest" component={HomeGuest} />
+        <Stack.Screen name="HomeGuest" component={BottomTabNavigator} />
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
