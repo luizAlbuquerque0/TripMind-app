@@ -26,6 +26,7 @@ declare module '@emotion/react' {
         n80: string;
         n70: string;
         n50: string;
+        n30: string;
         n0: string;
       };
       success: {main: string; light: string};

@@ -7,7 +7,7 @@ export const AppText = forwardRef<Text, TextProps>((props, ref) => {
     <Text
       ref={ref}
       {...props}
-      style={[{fontFamily: theme.fonts.regular}, props.style]}
+      style={[{fontFamily: theme.fonts.regular, fontWeight: 400}, props.style]}
     />
   );
 });

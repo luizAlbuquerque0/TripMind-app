@@ -36,6 +36,7 @@ export const theme: Theme = {
       n80: '#E6E6E6',
       n70: '#C7C7C7',
       n50: '#737373',
+      n30: '#B3B3B3',
       n0: '#000000',
     },
     success: {
