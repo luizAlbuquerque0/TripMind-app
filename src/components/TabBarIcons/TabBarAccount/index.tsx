@@ -1,5 +1,13 @@
 import {TabBarIcon, TabBarIconProps} from '..';
+import {useAuth} from '../../../hooks/useAuth';
 
 export function TabBarAccount(props: TabBarIconProps) {
-  return <TabBarIcon name="Account" label="Conta" {...props} />;
+  const {signedIn} = useAuth();
+  return (
+    <TabBarIcon
+      name="Account"
+      label={signedIn ? 'Conta' : 'Entrar'}
+      {...props}
+    />
+  );
 }

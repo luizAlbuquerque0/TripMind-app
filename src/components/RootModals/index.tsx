@@ -2,8 +2,10 @@ import {useShallow} from 'zustand/shallow';
 import {useStore} from '../../store';
 import {SignInModal} from '../Modals/SignInModal';
 import {SignUpModal} from '../Modals/SignUpModal';
+import {useAuth} from '../../hooks/useAuth';
 
 export function RootModals() {
+  const {signedIn} = useAuth();
   const {
     isSignInModalOpen,
     isSignUpModalOpen,
@@ -19,14 +21,18 @@ export function RootModals() {
   );
   return (
     <>
-      <SignInModal
-        open={isSignInModalOpen}
-        closeModal={toogleSignInModalOpen}
-      />
-      <SignUpModal
-        open={isSignUpModalOpen}
-        closeModal={toogleSignUpModalOpen}
-      />
+      {!signedIn && (
+        <>
+          <SignInModal
+            open={isSignInModalOpen}
+            closeModal={toogleSignInModalOpen}
+          />
+          <SignUpModal
+            open={isSignUpModalOpen}
+            closeModal={toogleSignUpModalOpen}
+          />
+        </>
+      )}
     </>
   );
 }

@@ -1,7 +1,15 @@
-import React, {createContext, useCallback, useEffect, useState} from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import {storageKeys} from '../constants/storageKeys';
 import {AuthService} from '../services/Auth.service';
 import {getData, storeData, removeData} from '../utils/asyncStorage';
+import {httpClient} from '../services/httpClient';
+import {Alert} from 'react-native';
 
 interface IAuthContextValue {
   signedIn: boolean;
@@ -24,6 +32,21 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
     }
 
     loadStorageData();
+  }, []);
+
+  useLayoutEffect(() => {
+    const interceptorId = httpClient.interceptors.request.use(async config => {
+      const accessToken = await getData(storageKeys.accessToken);
+      if (accessToken) {
+        config.headers.set('authorization', `Bearer ${accessToken}`);
+      }
+
+      return config;
+    });
+
+    return () => {
+      httpClient.interceptors.request.eject(interceptorId);
+    };
   }, []);
 
   const signIn = useCallback(

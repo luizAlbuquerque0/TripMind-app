@@ -18,29 +18,36 @@ import {Alert, Text, View} from 'react-native';
 import {useAuth} from '../../hooks/useAuth';
 import {storageKeys} from '../../constants/storageKeys';
 import {removeData} from '../../utils/asyncStorage';
-
-const {signOut} = useAuth();
-
-async function reset() {
-  await removeData(storageKeys.ONBOARDING);
-  signOut();
-}
+import {useQuery} from '@tanstack/react-query';
+import {UserService} from '../../services/userService/User.service';
+import {useHomeController} from './useHomeController';
 
 export function HomeScreen() {
+  const {user, isPending} = useHomeController();
+
+  const {signOut} = useAuth();
+
+  async function reset() {
+    await removeData(storageKeys.ONBOARDING);
+    signOut();
+  }
+
   return (
     <Wrapper>
       <InnerContent>
         <TopbarWrapper>
-          <Text
-            style={{
-              marginTop: -20,
-              fontWeight: 'bold',
-              color: 'white',
-              fontSize: 24,
-              maxWidth: '65%',
-            }}>
-            Luiz, Bem vindo(a) de volta
-          </Text>
+          {user && (
+            <Text
+              style={{
+                marginTop: -20,
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: 24,
+                maxWidth: '65%',
+              }}>
+              {user.name}, Bem vindo(a) de volta
+            </Text>
+          )}
           <Logo
             source={require('../../assets/logo/logo.png')}
             resizeMode="contain"
@@ -48,7 +55,9 @@ export function HomeScreen() {
         </TopbarWrapper>
         <Card>
           <View style={{width: '50%'}}>
-            <Title>Planeje sua próxima viagem com inteligência</Title>
+            <Title onPress={() => Alert.alert(user!.name)}>
+              Planeje sua próxima viagem com inteligência
+            </Title>
             <StartButton>
               <ButtonText>Começar →</ButtonText>
             </StartButton>

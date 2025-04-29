@@ -8,13 +8,16 @@ import {TabBarAccount} from '../components/TabBarIcons/TabBarAccount';
 import {TabBarFav} from '../components/TabBarIcons/TabBarFav';
 import {theme} from '../themes';
 import {AccountScreen} from '../screens/Account';
+import {useAuth} from '../hooks/useAuth';
+import {HomeScreen} from '../screens/Home';
 
 export function BottomTabNavigator() {
+  const {signedIn} = useAuth();
   const {Navigator, Screen} = createBottomTabNavigator<BottomTabParamList>();
 
   return (
     <Navigator
-      initialRouteName="HomeGuest"
+      initialRouteName="Home"
       backBehavior="initialRoute"
       screenOptions={{
         headerShown: false,
@@ -25,8 +28,8 @@ export function BottomTabNavigator() {
         },
       }}>
       <Screen
-        name="HomeGuest"
-        component={HomeGuest}
+        name="Home"
+        component={signedIn ? HomeScreen : HomeGuest}
         options={{tabBarIcon: TabBarHome}}
       />
       <Screen
