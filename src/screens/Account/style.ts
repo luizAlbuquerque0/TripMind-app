@@ -73,5 +73,5 @@ export const ActionsButton = styled.TouchableOpacity`
 
 export const ActionsButtonText = styled.Text`
   font-size: 20px;
-  color: ${theme.colors.neutral.n0};
+  color: ${theme.colors.neutral.n70};
 `;

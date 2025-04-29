@@ -27,8 +27,6 @@ export type FormData = z.infer<typeof signUpSchema>;
 export function useSignUpController() {
   const {toogleSignInModalOpen, toogleSignUpModalOpen} = useStore(
     useShallow(state => ({
-      isSignInModalOpen: state.modals.isSignInModalOpen,
-      isSignUpModalOpen: state.modals.isSignUpModalOpen,
       toogleSignInModalOpen: state.modals.toogleSignInModalOpen,
       toogleSignUpModalOpen: state.modals.toogleSignUpModalOpen,
     })),

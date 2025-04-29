@@ -15,6 +15,7 @@ import {
 } from './style';
 import {Pressable} from 'react-native';
 import {useAccountController} from './useAccountController';
+import {theme} from '../../themes';
 
 const actions = [
   {title: 'Configurações', icon: Settings},
@@ -49,7 +50,10 @@ export function AccountScreen() {
           {actions &&
             actions.map(action => (
               <ActionsButton key={action.title}>
-                <action.icon style={{marginRight: 10}} />
+                <action.icon
+                  style={{marginRight: 10}}
+                  color={theme.colors.neutral.n70}
+                />
                 <ActionsButtonText>{action.title}</ActionsButtonText>
               </ActionsButton>
             ))}

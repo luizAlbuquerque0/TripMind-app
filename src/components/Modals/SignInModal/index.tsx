@@ -24,19 +24,24 @@ interface SignInModalProps {
 }
 
 export function SignInModal({open, closeModal}: SignInModalProps) {
-  const {control, errors, handleSubmit, isLoading, LoginWithGoogle} =
+  const {control, errors, handleSubmit, reset, isLoading, LoginWithGoogle} =
     useSignInController();
+
+  function handleClose() {
+    reset();
+    closeModal();
+  }
 
   return (
     <Modal
       visible={open}
       animationType="slide"
       presentationStyle="pageSheet"
-      onRequestClose={() => closeModal()}>
+      onRequestClose={handleClose}>
       <Container>
         <Header>
           <Title>Entrar</Title>
-          <CloseButton onPress={closeModal}>
+          <CloseButton onPress={handleClose}>
             <XIcon />
           </CloseButton>
         </Header>

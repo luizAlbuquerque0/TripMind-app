@@ -6,6 +6,7 @@ import {useMutation} from '@tanstack/react-query';
 import {useAuth} from '../../../hooks/useAuth';
 import {useShallow} from 'zustand/shallow';
 import {useStore} from '../../../store';
+import {Alert} from 'react-native';
 
 const signInSchema = z.object({
   email: z.string().nonempty('E-mail é obrigatório').email('Email inválido'),
@@ -18,12 +19,18 @@ const signInSchema = z.object({
 export type FormData = z.infer<typeof signInSchema>;
 
 export function useSignInController() {
-  
+  const {toogleSignInModalOpen, toogleSignUpModalOpen} = useStore(
+    useShallow(state => ({
+      toogleSignInModalOpen: state.modals.toogleSignInModalOpen,
+      toogleSignUpModalOpen: state.modals.toogleSignUpModalOpen,
+    })),
+  );
   const authContext = useAuth();
   const {
     control,
     handleSubmit: hookFormHandleSubmit,
     formState: {errors},
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -43,6 +50,8 @@ export function useSignInController() {
         type: 'success',
         text1: `Bem Vindo(a)`,
       });
+
+      toogleSignInModalOpen();
     } catch (error) {
       console.error(error);
     }
@@ -56,6 +65,7 @@ export function useSignInController() {
     control,
     errors,
     isLoading: isPending,
+    reset,
     handleSubmit,
     LoginWithGoogle,
   };
