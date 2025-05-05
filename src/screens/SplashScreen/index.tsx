@@ -50,7 +50,7 @@ export function SplashScreen() {
   return (
     <Container
       source={require('../../assets/logo/splashLogo.png')}
-      resizeMode="cover">
+      resizeMode="stretch">
       <Animation>
         <LottieView
           source={require('../../assets/animations/loading.json')}
